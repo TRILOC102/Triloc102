@@ -3,65 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xem phim - Kiếm tiền</title>
+    <title>Quay Số May Mắn</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            text-align: center;
+            margin: 20px;
         }
         .container {
-            max-width: 800px;
-            margin: 20px auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
         }
-        h1, h2, h3 {
-            color: #f05454;
-            text-align: center;
-        }
-        .image-links {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .image-links a {
-            display: block;
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
             margin: 10px 0;
-            color: #f05454;
-            text-decoration: none;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
             font-weight: bold;
+            color: #007bff;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>✨ Tham gia ngay ứng dụng xem phim - Kiếm tiền cực dễ! 🎥</h1>
-        <p>🔥 Chỉ cần giải trí, nhận tiền mỗi ngày!</p>
-        
-        <h2>💰 Gói cơ bản - Kiếm 699K/30 ngày:</h2>
-        <ul>
-            <li>Nhận 30K/ngày, thu nhập lên tới 900K/tháng.</li>
-            <li>Lợi nhuận lần đầu: lên đến 200K/tháng.</li>
-        </ul>
+        <h1>Quay Số May Mắn</h1>
+        <p>Nhập số điện thoại của bạn và quay số để nhận thưởng!</p>
+        <input type="text" id="phoneNumber" placeholder="Nhập số điện thoại của bạn">
+        <button id="spinButton" onclick="spin()">Quay Số</button>
+        <div class="result" id="result"></div>
+    </div>
 
-        <h3>🎁 Ưu đãi đặc biệt lần đầu đầu tư:</h3>
-        <ul>
-            <li>Bảo hành vốn 699K [Đảm bảo không lỗ vốn bỏ ra].</li>
-            <li>Nhận 300K sau khi đầu tư [Không bảo hành vốn].</li>
-        </ul>
+    <script>
+        const prizes = [
+            "100Đ", "200Đ", "300Đ", "400Đ", "500Đ", "600Đ", "700Đ", "800Đ", "900Đ",
+            "1.000VNĐ", "2.000VNĐ", "2.222VNĐ", "3.000VNĐ", "3.333VNĐ", "4.000VNĐ", 
+            "4.567VNĐ", "5.000VNĐ", "5.555VNĐ", "6.000VNĐ", "6.666VNĐ"
+        ];
 
-        <h2>💎 Gói cao cấp - Lợi nhuận khủng:</h2>
-        <ul>
-            <li>Đầu tư 1.990K/30 ngày, mỗi ngày nhận 90K.</li>
-            <li>Thu nhập lên tới 2.7M/tháng.</li>
-            <li>Tổng lãi: 710K!</li>
-        </ul>
+        let hasSpun = false;
 
+        function spin() {
+            const phoneNumber = document.getElementById("phoneNumber").value;
+            const resultDiv = document.getElementById("result");
+            const spinButton = document.getElementById("spinButton");
+
+            if (!phoneNumber) {
+                resultDiv.textContent = "Vui lòng nhập số điện thoại!";
+                resultDiv.style.color = "red";
+                return;
+            }
+
+            if (hasSpun) {
+                resultDiv.textContent = "Bạn chỉ được quay 1 lần!";
+                resultDiv.style.color = "red";
+                return;
+            }
+
+            const prize = prizes[Math.floor(Math.random() * prizes.length)];
+            resultDiv.textContent = `Chúc mừng! Bạn nhận được: ${prize}`;
+            resultDiv.style.color = "#007bff";
+
+            hasSpun = true;
+            spinButton.disabled = true;
+        }
+    </script>
+</body>
+</html>
         <div class="cta">
             <p>👉 Xem phim – Kiếm tiền – Thỏa sức giải trí!</p>
             <p>📲 <a href="#">Tải ngay ứng dụng</a> để bắt đầu hành trình gia tăng thu nhập hôm nay!</p>
